@@ -7,8 +7,12 @@ module.exports = {
         filename: 'bundle.js'
     },
     resolve: {
+        modules: [
+            'node_modules',
+            './app/components'
+        ],
         alias: {
-            Main: path.resolve(__dirname, './app/components/Main.jsx')
+            styles: path.resolve(__dirname, './app/styles/app.scss')
         },
         extensions: ['*', '.js', '.jsx']
     },

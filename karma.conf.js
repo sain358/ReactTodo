@@ -7,12 +7,12 @@ module.exports = function(config) {
         frameworks: ['jasmine'],
         files: ['app/tests/**/*.test.jsx'],
         preprocessors: {
-            './tests/**/*.test.jsx': ['webpack', 'sourcemap'],
+            'app/tests/**/*.test.jsx': ['webpack', 'sourcemap'],
         },
         reporters: ['mocha'],
         webpack: webpackConfig,
         webpackMiddleware: {
-            noInfo: true
+            stats: 'errors-only'
         },
         browserNoActivityTimeout: 60000
     });

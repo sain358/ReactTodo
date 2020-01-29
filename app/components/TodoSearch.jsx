@@ -1,6 +1,8 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import * as actions from 'actions';
 
-export default class TodoSearch extends React.Component {
+export class TodoSearch extends React.Component {
 
     render() {
         return (
@@ -10,6 +12,7 @@ export default class TodoSearch extends React.Component {
                            type="search"
                            ref="searchText"
                            placeholder="Search todos"
+                           value={this.props.searchText}
                            onChange={this.handleSearch}/>
                 </div>
                 <div className="custom-control custom-checkbox">
@@ -17,7 +20,8 @@ export default class TodoSearch extends React.Component {
                            className="custom-control-input"
                            type="checkbox"
                            ref="showCompleted"
-                           onChange={this.handleSearch}/>
+                           checked={this.props.showCompleted}
+                           onChange={this.handleChecked}/>
                     <label className="custom-control-label" htmlFor="showCompleted">Show completed todos</label>
                 </div>
             </div>
@@ -25,8 +29,19 @@ export default class TodoSearch extends React.Component {
     };
 
     handleSearch = () => {
-        var showCompleted = this.refs.showCompleted.checked;
-        var searchText = this.refs.searchText.value;
-        this.props.onSearch(showCompleted, searchText);
+        this.props.dispatch(actions.setSearchText(this.refs.searchText.value));
+    };
+
+    handleChecked = () => {
+        this.props.dispatch(actions.toggleShowCompleted());
     };
 }
+
+export default connect(
+    (state) => {
+        return {
+            showCompleted: state.showCompleted,
+            searchText: state.searchText
+        }
+    }
+)(TodoSearch);

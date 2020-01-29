@@ -13,7 +13,10 @@ module.exports = {
             './app/api',
         ],
         alias: {
-            styles: path.resolve(__dirname, './app/styles/app.scss')
+            styles: path.resolve(__dirname, './app/styles/app.scss'),
+            actions: path.resolve(__dirname, './app/actions/actions.jsx'),
+            reducers: path.resolve(__dirname, './app/reducers/reducers.jsx'),
+            store: path.resolve(__dirname, './app/store/index.jsx'),
         },
         extensions: ['*', '.js', '.jsx']
     },

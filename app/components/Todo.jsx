@@ -1,8 +1,9 @@
 import React from 'react';
 import moment from 'moment';
+import {connect} from 'react-redux';
+import * as actions from 'actions';
 
-export default class Todo extends React.Component {
-
+export class Todo extends React.Component {
 
     render() {
         return (
@@ -29,10 +30,12 @@ export default class Todo extends React.Component {
     };
 
     handleClick = () => {
-        this.props.onToggle(this.props.id);
+        this.props.dispatch(actions.toggleTodo(this.props.id));
     };
 
     getClass = () => {
         return this.props.completed && "completed"
     };
 }
+
+export default connect()(Todo);

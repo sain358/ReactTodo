@@ -1,7 +1,9 @@
 import React from 'react';
-import Todo from 'Todo'
+import Todo from 'Todo';
+import {connect} from 'react-redux';
+import TodoAPI from 'TodoAPI';
 
-export default class TodoList extends React.Component {
+export class TodoList extends React.Component {
 
     render() {
         return (
@@ -12,9 +14,12 @@ export default class TodoList extends React.Component {
     }
 
     renderTodos = () => {
-        return this.props.todos.map(todo => {
-            return <Todo key={todo.id} {...todo} onToggle={this.props.onToggle}/>
+        var {todos, showCompleted, searchText} = this.props;
+        return TodoAPI.filterTodos(todos, showCompleted, searchText).map(todo => {
+            return <Todo key={todo.id} {...todo}/>
         })
     }
 
 }
+
+export default connect(state => state)(TodoList)

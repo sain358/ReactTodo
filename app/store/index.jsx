@@ -1,7 +1,7 @@
 import * as redux from 'redux';
 import * as reducers from 'reducers';
 
-export var getStore = (initialState = {}) => {
+export var getStore = (initialState = {searchText: '', showCompleted: true, todos: []}) => {
     var reducer = redux.combineReducers({
         searchText: reducers.searchTextReducer,
         showCompleted: reducers.showCompletedReducer,

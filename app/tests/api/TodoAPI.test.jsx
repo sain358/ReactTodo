@@ -1,7 +1,7 @@
 import ReactTestUtils from "react-dom/test-utils";
 import TodoAPI from 'TodoAPI';
 
-describe('TodoAPI', () => {
+describe('TodoAPI:', () => {
     beforeEach(() => {
         localStorage.removeItem('todos');
     });

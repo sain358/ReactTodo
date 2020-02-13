@@ -1,6 +1,3 @@
-import uuid from 'node-uuid';
-import moment from 'moment';
-
 export var searchTextReducer = (state = "", action) => {
     switch (action.type) {
         case "SET_SEARCH_TEXT":
@@ -24,27 +21,19 @@ export var todosReducer = (state = [], action) => {
         case "ADD_TODO":
             return [
                 ...state,
-                {
-                    id: uuid(),
-                    text: action.text,
-                    completed: false,
-                    createdOn: moment().unix(),
-                    completedOn: undefined
-                }
+                action.todo
             ];
         case "ADD_TODOS":
             return [
                 ...state,
                 ...action.todos
             ];
-        case "TOGGLE_TODO":
+        case "UPDATE_TODO":
             return state.map((todo) => {
                 if (todo.id === action.id) {
-                    var completed = !todo.completed;
                     return {
                         ...todo,
-                        completed: completed,
-                        completedOn: completed ? moment().unix() : undefined
+                        ...action.updates
                     }
                 } else {
                     return todo;

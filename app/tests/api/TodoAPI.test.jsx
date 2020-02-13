@@ -10,32 +10,6 @@ describe('TodoAPI:', () => {
         ReactTestUtils.isElement(TodoAPI);
     });
 
-    describe('setTodos', () => {
-        it('should set valid todos array', function () {
-            TodoAPI.setTodos(todos);
-            var storedData = JSON.parse(localStorage.getItem('todos'));
-            expect(storedData).toEqual(todos);
-        });
-
-        it('should not set invalid todos array', function () {
-            var data = {1: 2};
-            TodoAPI.setTodos(data);
-            var storedData = JSON.parse(localStorage.getItem('todos'));
-            expect(storedData).toEqual(null);
-        });
-    });
-
-    describe('getTodos', () => {
-        it('should return empty array for bad data', function () {
-            expect(TodoAPI.getTodos()).toEqual([]);
-        });
-
-        it('should return todos if valid data', function () {
-            localStorage.setItem('todos', JSON.stringify(todos));
-            expect(TodoAPI.getTodos()).toEqual(todos);
-        });
-    });
-
     describe('filterTodos', () => {
         it('should return all items if showCompleted is true', function () {
             var filterTodos = TodoAPI.filterTodos(todos, true, '');

@@ -6,16 +6,10 @@ import {HashRouter as Router, Route} from 'react-router-dom';
 import TodoApp from 'TodoApp';
 import {getStore} from './store';
 import * as actions from 'actions';
-import TodoAPI from 'TodoAPI';
 
 const store = getStore();
-store.subscribe(() => {
-   var state = store.getState();
-   TodoAPI.setTodos(state.todos);
-});
 
-var initialTodos = TodoAPI.getTodos();
-store.dispatch(actions.addTodos(initialTodos));
+store.dispatch(actions.startAddTodos());
 
 ReactDOM.render(
     <div className="container">

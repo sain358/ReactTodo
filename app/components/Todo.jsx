@@ -30,7 +30,7 @@ export class Todo extends React.Component {
     };
 
     handleClick = () => {
-        this.props.dispatch(actions.toggleTodo(this.props.id));
+        this.props.dispatch(actions.startToggleTodo(this.props.id, !this.props.completed));
     };
 
     getClass = () => {

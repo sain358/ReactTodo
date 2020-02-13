@@ -13,9 +13,15 @@ describe('Actions:', () => {
     it('should generate add todo action', function () {
         var action = {
             type: 'ADD_TODO',
-            text: 'something to do'
+            todo: {
+                id: 11,
+                text: "Walk a dog",
+                completed: false,
+                completedOn: undefined,
+                createdOn: 500
+            }
         };
-        var res = actions.addTodo(action.text);
+        var res = actions.addTodo(action.todo);
         expect(res).toEqual(action);
     });
 
@@ -43,12 +49,13 @@ describe('Actions:', () => {
         expect(res).toEqual(action);
     });
 
-    it('should generate tgogle todo action', function () {
+    it('should generate update todo action', function () {
         var action = {
-            type: 'TOGGLE_TODO',
-            id: 11
+            type: 'UPDATE_TODO',
+            id: 11,
+            updates: {completed: false}
         };
-        var res = actions.toggleTodo(action.id);
+        var res = actions.updateTodo(action.id, action.updates);
         expect(res).toEqual(action);
     });
 });

@@ -1,18 +1,4 @@
 module.exports = {
-    setTodos: (todos) => {
-        if (Array.isArray(todos)) {
-            localStorage.setItem('todos', JSON.stringify(todos));
-            return todos
-        }
-    },
-    getTodos: () => {
-        try {
-            var todos = JSON.parse(localStorage.getItem('todos'));
-        } catch (e) {
-            return [];
-        }
-        return Array.isArray(todos) ? todos : [];
-    },
     filterTodos: (todos, showCompleted, searchText) => {
         var filteredTodos = todos;
 

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-dom/test-utils';
 import $ from 'jquery';
 import {AddTodo} from 'AddTodo';
+import * as actions from 'actions';
 
 describe('AddTodo:', () => {
     it('should exist', () => {
@@ -11,10 +12,7 @@ describe('AddTodo:', () => {
 
     it('should dispatch ADD_TODO when valid todo text', () => {
         var text = 'test text';
-        var action = {
-            type: "ADD_TODO",
-            text
-        };
+        var action = actions.startAddTodo(text);
         var spy = jasmine.createSpy();
         var addTodo = ReactTestUtils.renderIntoDocument(<AddTodo dispatch={spy}/>);
         var $el = $(ReactDOM.findDOMNode(addTodo));

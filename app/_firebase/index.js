@@ -1,14 +1,14 @@
 import firebase from 'firebase';
 
 var firebaseConfig = {
-    apiKey: "AIzaSyBdMf1RUUZ-MtZZTyrhVyjl6SRbKXIHUzQ",
-    authDomain: "todo358-cf7ef.firebaseapp.com",
-    databaseURL: "https://todo358-cf7ef.firebaseio.com",
-    projectId: "todo358-cf7ef",
-    storageBucket: "todo358-cf7ef.appspot.com",
-    messagingSenderId: "527215036649",
-    appId: "1:527215036649:web:ffd116bbe9b9257ebd4878",
-    measurementId: "G-VMPFV822DE"
+    apiKey: process.env.API_KEY,
+    authDomain: process.env.AUTH_DOMAIN,
+    databaseURL: process.env.DATABASE_URL,
+    projectId: process.env.PROJECT_ID,
+    storageBucket: process.env.STORAGE_BUCKET,
+    messagingSenderId: process.env.MESSAGING_SENDER_ID,
+    appId: process.env.APP_ID,
+    measurementId: process.env.MEASUREMENT_ID
 };
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();

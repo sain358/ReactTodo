@@ -1,6 +1,9 @@
 const path = require('path');
+const dotenv = require('dotenv');
+const webpack = require('webpack');
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+const env = dotenv.config({path: __dirname + '/config/' + process.env.NODE_ENV + '.env'});
 
 module.exports = {
     entry: './app/app.jsx',
@@ -38,5 +41,10 @@ module.exports = {
             }
         ]
     },
+    plugins: [
+        new webpack.DefinePlugin({
+            'process.env': JSON.stringify(env.parsed)
+        })
+    ],
     devtool: process.env.NODE_ENV === 'production' ? undefined : 'cheap-module-eval-source-map'
 };

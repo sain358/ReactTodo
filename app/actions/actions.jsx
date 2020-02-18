@@ -1,4 +1,4 @@
-import {firebaseRef} from "_firebase";
+import firebase, {firebaseRef, githubProvider} from "_firebase";
 import moment from "moment";
 
 export var setSearchText = (searchText) => {
@@ -23,7 +23,8 @@ export var startAddTodo = (text) => {
             createdOn: moment().unix(),
             completedOn: null
         };
-        var todoRef = firebaseRef.child('todos').push(todo);
+        var uid = getState().auth.uid;
+        var todoRef = firebaseRef.child(`users/${uid}/todos`).push(todo);
         return todoRef.then(() => {
             dispatch(addTodo({
                 ...todo,
@@ -42,7 +43,8 @@ export var addTodos = (todos) => {
 
 export var startAddTodos = () => {
     return (dispatch, getState) => {
-        var todosRef = firebaseRef.child('todos');
+        var uid = getState().auth.uid;
+        var todosRef = firebaseRef.child(`users/${uid}/todos`);
         return todosRef.once('value').then((snapshot) => {
             var todos = snapshot.val() || {};
             var parseTodos = [];
@@ -73,13 +75,47 @@ export var updateTodo = (id, updates) => {
 
 export var startToggleTodo = (id, completed) => {
     return (dispatch, getState) => {
-        var todoRef = firebaseRef.child(`todos/${id}`);
+        var uid = getState().auth.uid;
+        var todoRef = firebaseRef.child(`users/${uid}/todos/${id}`);
         var updates = {
             completed,
             completedOn: completed ? moment().unix() : null
         };
         return todoRef.update(updates).then(() => {
             dispatch(updateTodo(id, updates));
+        });
+    }
+};
+
+export var login = (uid) => {
+    return {
+        type: 'LOGIN',
+        uid
+    }
+};
+
+export var startLogin = () => {
+    return (dispatch, getState) => {
+        return firebase.auth().signInWithPopup(githubProvider).then(
+            (result) => {
+                console.log('Logged in', result);
+            },
+            (error) => {
+                console.log('Unable to login', error);
+            })
+    }
+};
+
+export var logout = () => {
+    return {
+        type: 'LOGOUT'
+    }
+};
+
+export var startLogout = () => {
+    return (dispatch, getState) => {
+        return firebase.auth().signOut().then(() => {
+            console.log('Logged out');
         });
     }
 };

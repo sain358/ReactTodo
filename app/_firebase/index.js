@@ -13,5 +13,7 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
+//TODO: implement email/password, facebook and google login
+export var githubProvider = new firebase.auth.GithubAuthProvider();
 export const firebaseRef = firebase.database().ref();
 export default firebase;

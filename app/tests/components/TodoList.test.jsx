@@ -4,7 +4,7 @@ import {Provider} from 'react-redux';
 import {getStore} from "store";
 import {TodoList} from 'TodoList';
 import {Todo} from 'Todo';
-import TodoApp from "TodoApp";
+import {TodoApp} from "TodoApp";
 
 describe('TodoList:', () => {
     it('should exist', () => {

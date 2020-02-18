@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
-import TodoApp from 'TodoApp';
+import {TodoApp} from 'TodoApp';
 import {Provider} from 'react-redux';
 import {getStore} from "store";
 import {TodoList} from "TodoList";

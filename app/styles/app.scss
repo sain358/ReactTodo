@@ -2,4 +2,21 @@
 
 .completed {
   text-decoration: line-through;
- }
+}
+
+.auth-panel {
+  padding: 1rem 5rem;
+}
+
+.overlay {
+  z-index: 1;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.spinner-border {
+  width: 5rem;
+  height: 5rem;
+}

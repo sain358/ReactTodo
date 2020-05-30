@@ -1,4 +1,4 @@
-import firebase, {firebaseRef, githubProvider} from "_firebase";
+import firebase, {firebaseRef, githubProvider, googleProvider} from "_firebase";
 import moment from "moment";
 
 export var setSearchText = (searchText) => {
@@ -94,14 +94,54 @@ export var login = (uid) => {
     }
 };
 
-export var startLogin = () => {
+export var startLoginWithGitHub = () => {
     return (dispatch, getState) => {
-        return firebase.auth().signInWithPopup(githubProvider).then(
+        return firebase.auth().signInWithRedirect(githubProvider).then(
             (result) => {
-                console.log('Logged in', result);
+                console.log('Logged in');
             },
             (error) => {
                 console.log('Unable to login', error);
+                alert(error.message);
+            })
+    }
+};
+
+export var startLoginWithGoogle = () => {
+    return (dispatch, getState) => {
+        return firebase.auth().signInWithRedirect(googleProvider).then(
+            (result) => {
+                console.log('Logged in');
+            },
+            (error) => {
+                console.log('Unable to login', error);
+                alert(error.message);
+            })
+    }
+};
+
+export var startLoginWithEmail = (email, password) => {
+    return (dispatch, getState) => {
+        return firebase.auth().signInWithEmailAndPassword(email, password).then(
+            (result) => {
+                console.log('Logged in');
+            },
+            (error) => {
+                console.log('Unable to login', error);
+                alert(error.message);
+            })
+    }
+};
+
+export var startRegisterWithEmail = (email, password) => {
+    return (dispatch, getState) => {
+        return firebase.auth().createUserWithEmailAndPassword(email, password).then(
+            (result) => {
+                console.log('Logged in');
+            },
+            (error) => {
+                console.log('Unable to login', error);
+                alert(error.message);
             })
     }
 };
